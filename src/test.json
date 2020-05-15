@@ -1,0 +1,247 @@
+{
+  "version": 2,
+  "tables": [
+    {
+      "table": {
+        "schema": "subscriptions",
+        "name": "quota"
+      },
+      "array_relationships": [
+        {
+          "name": "quota_x_users",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "quota_id",
+              "table": {
+                "schema": "subscriptions",
+                "name": "quota_x_user"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "quota_id",
+              "identifier",
+              "name",
+              "modified_ts"
+            ],
+            "filter": {},
+            "allow_aggregations": true
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "subscriptions",
+        "name": "quota_x_user"
+      },
+      "object_relationships": [
+        {
+          "name": "blockedUser",
+          "using": {
+            "foreign_key_constraint_on": "blocked_user_id"
+          }
+        },
+        {
+          "name": "createdUser",
+          "using": {
+            "foreign_key_constraint_on": "created_user_id"
+          }
+        },
+        {
+          "name": "quota",
+          "using": {
+            "foreign_key_constraint_on": "quota_id"
+          }
+        },
+        {
+          "name": "user",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "users",
+                "name": "user"
+              },
+              "column_mapping": {
+                "user_login": "login_ipa"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "quota_x_user_id",
+              "quota_id",
+              "user_login",
+              "is_active_flg",
+              "created_ts",
+              "blocked_ts",
+              "modified_ts",
+              "created_user_id",
+              "blocked_user_id",
+              "create_reason",
+              "block_reason"
+            ],
+            "filter": {},
+            "allow_aggregations": true
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "users",
+        "name": "front_notification"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "select": "notifications"
+        },
+        "custom_column_names": {
+          "is_read_flg": "isRead",
+          "modified_ts": "modifiedTs",
+          "event_ts": "eventTs",
+          "read_ts": "readTs",
+          "user_id": "userId",
+          "front_notification_id": "id"
+        }
+      },
+      "object_relationships": [
+        {
+          "name": "user",
+          "using": {
+            "foreign_key_constraint_on": "user_id"
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "content",
+              "event_ts",
+              "front_notification_id",
+              "is_read_flg",
+              "level",
+              "modified_ts",
+              "notification_id",
+              "read_ts",
+              "user_id"
+            ],
+            "filter": {
+              "user_id": {
+                "_eq": "X-Hasura-User-Id"
+              }
+            },
+            "allow_aggregations": true
+          }
+        }
+      ],
+      "update_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "is_read_flg",
+              "modified_ts",
+              "read_ts"
+            ],
+            "filter": {
+              "user_id": {
+                "_eq": "X-Hasura-User-Id"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "users",
+        "name": "user"
+      },
+      "array_relationships": [
+        {
+          "name": "front_notifications",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "user_id",
+              "table": {
+                "schema": "users",
+                "name": "front_notification"
+              }
+            }
+          }
+        },
+        {
+          "name": "quotaXUsersByBlockedUserId",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "blocked_user_id",
+              "table": {
+                "schema": "subscriptions",
+                "name": "quota_x_user"
+              }
+            }
+          }
+        },
+        {
+          "name": "quota_x_users",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "created_user_id",
+              "table": {
+                "schema": "subscriptions",
+                "name": "quota_x_user"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "user",
+          "permission": {
+            "columns": [
+              "user_id",
+              "login_ipa",
+              "email_sigma",
+              "email_alpha",
+              "first_name",
+              "last_name",
+              "middle_name",
+              "modified_ts",
+              "password",
+              "is_blocked_flg",
+              "sber_pdi",
+              "login_sudir",
+              "phone_number",
+              "department",
+              "position",
+              "last_access_ts",
+              "manager",
+              "is_tech_user_flg",
+              "last_auth_log_ts",
+              "dict_business_block_registry_id",
+              "dict_unit_registry_id",
+              "mobile_phone_number"
+            ],
+            "filter": {},
+            "allow_aggregations": true
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+      "module": "commonjs",
+      "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "pretty": true,
+    "types": ["node"],
+    "sourceMap": true,
+    "outDir": "./pkg",
+    "target": "es5",
+    "lib": [
+      "es2019"
+    ],
+    "baseUrl": "./",
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+       "paths": {
+            "*": [
+                "node_modules/*",
+                "src/*"
+            ]
+        }
+  },
+  "exclude": ["atweb/**/*.ts", "node_modules/**/*.ts", "battlecry/**/*.ts"]
+}
