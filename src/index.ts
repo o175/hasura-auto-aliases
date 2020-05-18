@@ -38,10 +38,7 @@ const getNewNames = (c:ITable)=>gatherColumnNames(c)
     ),   c?.configuration?.custom_column_names??{})
 
 for(let t of config!.tables ){
-  console.log(JSON.stringify(t, null,2))
-  console.log(JSON.stringify(gatherColumnNames(t), null,2))
   const newNames=getNewNames(t);
-  console.log({newNames});
   if(newNames){
     _.set(t, 'configuration.custom_column_names', getNewNames(t))
   }

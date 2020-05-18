@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com:o175/hasura-auto-aliases.git",
   "author": "Wit <o175@ya.ru>",
-  "trailing-whitespaces": "pkg/index.js",
+  "hasura-auto-aliases": "pkg/index.js",
   "keywords": [
     "hasura",
     "snake",
@@ -21,7 +21,7 @@
     "tsc": "tsc"
   },
   "bin": {
-    "trailing-whitespaces": "pkg/index.js"
+    "hasura-auto-aliases": "pkg/index.js"
   },
   "files": [
     "pkg/**/*"
