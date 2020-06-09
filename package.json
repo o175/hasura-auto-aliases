@@ -1,6 +1,6 @@
 {
   "name": "hasura-auto-aliases",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "turn snake_cased columns into camelCased graphql api",
   "main": "index.js",
   "repository": "github:o175/hasura-auto-aliases",
