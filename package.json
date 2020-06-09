@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "turn snake_cased columns into camelCased graphql api",
   "main": "index.js",
-  "repository": "git@github.com:o175/hasura-auto-aliases.git",
+  "repository": "github:o175/hasura-auto-aliases",
   "author": "Wit <o175@ya.ru>",
   "hasura-auto-aliases": "pkg/index.js",
   "keywords": [
